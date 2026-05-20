@@ -6,13 +6,13 @@ import { useTheme } from 'next-themes';
 import { cx } from 'class-variance-authority';
 
 export default function Header1() {
-  let isScrolled:boolean = false;                                     //learn to read the code(error can be easily found if u see the logic behind something which seems correct)
+  const [isScrolled, setIsScrolled] = useState(false);                                    //learn to read the code(error can be easily found if u see the logic behind something which seems correct)
   const { theme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20){isScrolled = true};
-    };
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 20);
+  };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -58,7 +58,7 @@ export default function Header1() {
           <div className="flex items-center space-x-4">
             <Link
               to="/login"
-              className="text-sm font-semibold text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white transition-all duration-300 rounded-full px-5 py-2 backbackdrop-blur-md bg-white/20 dark:bg-black/20 border border-white/30 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/40 dark:hover:bg-white/10"
+              className="text-sm font-semibold text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white transition-all duration-300 rounded-full px-5 py-2 backdrop-blur-md bg-white/20 dark:bg-black/20 border border-white/30 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-white/40 dark:hover:bg-white/10"
             >
               Log in
             </Link>
